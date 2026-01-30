@@ -6,7 +6,7 @@ services:
       POSTGRES_PASSWORD: attendance123
       POSTGRES_DB: attendance_db
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
 
@@ -16,7 +16,7 @@ services:
       DATABASE_URL: postgresql+psycopg://attendance:attendance123@db:5432/attendance_db
       JWT_SECRET: "CHANGE_THIS_TO_A_LONG_RANDOM_SECRET"
       LECTURER_PASSWORD: "lecturer123"
-      WIFI_ALLOWED_CIDRS: "10.0.0.0/8,192.168.0.0/16"   # <-- change to your campus WiFi CIDR
+      WIFI_ALLOWED_CIDRS: "10.0.0.0/8,172.16.0.0/12"
       APP_BASE_URL: "http://localhost:5173"
       TRUST_PROXY_HEADERS: "true"
     depends_on:
