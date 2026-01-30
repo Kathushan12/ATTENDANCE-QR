@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"/><title>Lecturer</title></head>
+<body>
+  <h2>Lecturer Dashboard</h2>
+
+  <label>Lecturer Password:</label>
+  <input id="pw" type="password" value="lecturer123" />
+  <button id="loginBtn">Login</button>
+
+  <hr/>
+
+  <label>Module Code:</label>
+  <input id="module" placeholder="EG2010" />
+  <button id="startBtn">Start Session</button>
+
+  <h3>Live QR (refresh every 10s)</h3>
+  <canvas id="qr"></canvas>
+  <p id="status"></p>
+  <p id="url"></p>
+
+  <script type="module" src="/src/lecturer.js"></script>
+</body>
+</html>
