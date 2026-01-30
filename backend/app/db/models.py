@@ -1,3 +1,4 @@
+from datetime import datetime
 from sqlalchemy import String, Integer, DateTime, ForeignKey, UniqueConstraint, func, Boolean
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.base import Base
@@ -20,7 +21,12 @@ class AttendanceSession(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     module_id: Mapped[int] = mapped_column(ForeignKey("modules.id"), index=True)
     active: Mapped[bool] = mapped_column(Boolean, default=True)
-    created_at: Mapped = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
+        server_default=func.now(),
+        nullable=False,
+    )
 
     module = relationship("Module")
 
@@ -31,7 +37,12 @@ class Attendance(Base):
     student_id: Mapped[int] = mapped_column(ForeignKey("students.id"), index=True)
     device_hash: Mapped[str] = mapped_column(String(128), index=True)
     ip: Mapped[str] = mapped_column(String(64))
-    created_at: Mapped = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
+        server_default=func.now(),
+        nullable=False,
+    )
 
     __table_args__ = (
         UniqueConstraint("session_id", "student_id", name="uq_session_student_once"),

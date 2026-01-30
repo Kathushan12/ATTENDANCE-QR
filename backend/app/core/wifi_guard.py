@@ -18,6 +18,11 @@ def get_client_ip(request: Request) -> str:
 
 def enforce_wifi_only(request: Request):
     ip_str = get_client_ip(request)
+
+    # ✅ DEV: allow local testing
+    if ip_str in ("127.0.0.1", "::1"):
+        return
+
     ip = ipaddress.ip_address(ip_str)
     if not any(ip in net for net in ALLOWED):
         raise HTTPException(status_code=403, detail="Attendance allowed only on University Wi-Fi")
