@@ -34,7 +34,7 @@ document.getElementById("startBtn").onclick = async () => {
 
   if (interval) clearInterval(interval);
   await refreshQR();
-  interval = setInterval(refreshQR, 10000);
+  interval = setInterval(refreshQR, 60000);
 };
 
 async function refreshQR() {
